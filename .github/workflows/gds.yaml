@@ -13,6 +13,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Verify UTF-8 in text sources
+        run: python3 scripts/check_utf8.py
+
       - name: Build GDS
         uses: TinyTapeout/tt-gds-action@ttsky26d
         with:

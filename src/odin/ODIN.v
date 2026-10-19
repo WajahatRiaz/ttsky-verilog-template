@@ -1,4 +1,4 @@
-// Copyright (C) 2016-2019 Université catholique de Louvain (UCLouvain), Belgium.
+// Copyright (C) 2016-2019 UniversitÃ© catholique de Louvain (UCLouvain), Belgium.
 // Copyright and related rights are licensed under the Solderpad Hardware
 // License, Version 2.0 (the "License"); you may not use this file except in
 // compliance with the License.  You may obtain a copy of the License at
@@ -14,9 +14,9 @@
 // 
 // Project: ODIN - An online-learning digital spiking neuromorphic processor
 //
-// Author:  C. Frenkel, Université catholique de Louvain (UCLouvain), 04/2017
+// Author:  C. Frenkel, UniversitÃ© catholique de Louvain (UCLouvain), 04/2017
 //
-// Cite/paper: C. Frenkel, M. Lefebvre, J.-D. Legat and D. Bol, "A 0.086-mm² 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning
+// Cite/paper: C. Frenkel, M. Lefebvre, J.-D. Legat and D. Bol, "A 0.086-mmÂ² 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning
 //             Digital Spiking Neuromorphic Processor in 28-nm CMOS," IEEE Transactions on Biomedical Circuits and Systems,
 //             vol. 13, no. 1, pp. 145-158, 2019.
 //

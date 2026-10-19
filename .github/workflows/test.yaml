@@ -9,6 +9,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Verify UTF-8 in text sources
+        run: python3 scripts/check_utf8.py
+
       - name: Install iverilog
         shell: bash
         run: sudo apt-get update && sudo apt-get install -y iverilog
