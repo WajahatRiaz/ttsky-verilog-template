@@ -10,10 +10,16 @@ See below to get started or for more information, check the [website](https://ti
 
 ## How to run
 
-To run the RTL simulation:
+From this directory, RTL simulation (creates `test/.venv`, installs cocotb, runs tests):
 
 ```sh
-make -B
+make
+```
+
+Rebuild from scratch:
+
+```sh
+make clean && make
 ```
 
 To run gatelevel simulation, first harden your project and copy `../runs/wokwi/results/final/verilog/gl/{your_module_name}.v` to `gate_level_netlist.v`.

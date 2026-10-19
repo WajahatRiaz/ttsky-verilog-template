@@ -1,8 +1,23 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# ODIN on Tiny Tapeout (ttsky-verilog-template)
 
-- [Read the documentation for project](docs/info.md)
+Tiny Tapeout wrapper for the [ODIN](https://github.com/ChFrenkel/ODIN) spiking neuromorphic processor (256 neurons, 64k synapses, SDSP learning, LIF/IZH neurons). **No off-chip SPI** — programming uses a parallel **host port on `uio`** (`uio[7]` selects host vs AER mode).
+
+- [Project datasheet / pinout](docs/info.md)
+- [ODIN architecture and programming guide](docs/odin/README.md)
+
+RTL layout:
+
+- `src/project.v` — `tt_um_wajahat_odin` top (Tapeout pinout)
+- `src/odin/` — ODIN core Verilog (from UCLouvain, SHL-2.0)
+- `docs/odin/` — ODIN documentation and figures
+
+## Quick test
+
+```bash
+cd test && make
+```
 
 ## What is Tiny Tapeout?
 

@@ -1,56 +1,63 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "ODIN Neuromorphic Processor"
+  author:       "Wajahat"
+  discord:      ""
+  description:  "256-neuron ODIN SNN with parallel uio host port (no SPI) for Tiny Tapeout"
+  language:     "Verilog"
+  clock_hz:     50000000
 
-  # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "8x2"
 
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_wajahat_odin"
 
-  # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
-  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "project.v"
+    - "odin/ODIN.v"
+    - "odin/aer_out.v"
+    - "odin/controller.v"
+    - "odin/fifo.v"
+    - "odin/host_if.v"
+    - "odin/izh_neuron.v"
+    - "odin/lif_neuron.v"
+    - "odin/neuron_core.v"
+    - "odin/scheduler.v"
+    - "odin/sdsp_update.v"
+    - "odin/synaptic_core.v"
+    - "odin/IZH_neuron_blocks/izh_calcium.v"
+    - "odin/IZH_neuron_blocks/izh_effective_threshold.v"
+    - "odin/IZH_neuron_blocks/izh_input_accumulator.v"
+    - "odin/IZH_neuron_blocks/izh_neuron_state.v"
+    - "odin/IZH_neuron_blocks/izh_stimulation_strength.v"
+    - "odin/LIF_neuron_blocks/lif_calcium.v"
+    - "odin/LIF_neuron_blocks/lif_neuron_state.v"
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
-  # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "Shared data / AERIN_ADDR[0]"
+  ui[1]: "Shared data / AERIN_ADDR[1]"
+  ui[2]: "Shared data / AERIN_ADDR[2]"
+  ui[3]: "Shared data / AERIN_ADDR[3]"
+  ui[4]: "Shared data / AERIN_ADDR[4]"
+  ui[5]: "Shared data / AERIN_ADDR[5]"
+  ui[6]: "Shared data / AERIN_ADDR[6]"
+  ui[7]: "Shared data / AERIN_ADDR[7]"
 
-  # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "Host read data / AEROUT_ADDR[0]"
+  uo[1]: "Host read data / AEROUT_ADDR[1]"
+  uo[2]: "Host read data / AEROUT_ADDR[2]"
+  uo[3]: "Host read data / AEROUT_ADDR[3]"
+  uo[4]: "Host read data / AEROUT_ADDR[4]"
+  uo[5]: "Host read data / AEROUT_ADDR[5]"
+  uo[6]: "Host read data / AEROUT_ADDR[6]"
+  uo[7]: "Host read data / AEROUT_ADDR[7]"
 
-  # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "Host strobe (mode=1) or AERIN_REQ (mode=0)"
+  uio[1]: "Host WE / AERIN_ACK out"
+  uio[2]: "Host config sel / AEROUT_REQ out"
+  uio[3]: "Host addr phase / AEROUT_ACK in"
+  uio[4]: "Host opcode[0] (mode=1)"
+  uio[5]: "Host opcode[1] or AERIN_ADDR[16] setup (mode=0)"
+  uio[6]: "AER addr setup latch (mode=0)"
+  uio[7]: "Mode select (0=AER, 1=host)"
 
-# Do not change!
 yaml_version: 6
