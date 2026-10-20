@@ -1,5 +1,5 @@
 # ODIN Tapeout wrapper — 50 MHz on clk
-set clock_period 20.0
+set clock_period 30.0
 set clock_port [get_ports clk]
 create_clock -name clk -period $clock_period $clock_port
 set_clock_uncertainty 0.5 [get_clocks clk]
@@ -12,7 +12,7 @@ foreach port [get_ports *] {
 	}
 }
 
-set io_budget [expr {$clock_period * 0.5}]
+set io_budget [expr {$clock_period * 0.2}]
 if {[llength $all_inputs_no_clk] > 0} {
 	set_input_delay -clock [get_clocks clk] $io_budget $all_inputs_no_clk
 }

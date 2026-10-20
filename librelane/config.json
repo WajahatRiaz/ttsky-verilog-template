@@ -23,7 +23,7 @@
     "dir::../src/odin/LIF_neuron_blocks/lif_neuron_state.v"
   ],
   "CLOCK_PORT": "clk",
-  "CLOCK_PERIOD": 20.0,
+  "CLOCK_PERIOD": 30.0,
   "PDK": "sky130A",
   "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
   "FALLBACK_SDC": "dir::../src/constraints.sdc",
@@ -427,5 +427,9 @@
     "sky130_fd_sc_hd__clkbuf_8"
   ],
   "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
-  "CTS_SINK_CLUSTERING_SIZE": 20
+  "CTS_SINK_CLUSTERING_SIZE": 20,
+  "RUN_POST_CTS_RESIZER_TIMING": true,
+  "RUN_POST_GRT_RESIZER_TIMING": true,
+  "PL_RESIZER_HOLD_SLACK_MARGIN": 0.2,
+  "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.2
 }

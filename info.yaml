@@ -5,7 +5,7 @@ project:
   discord:      ""
   description:  "256-neuron ODIN SNN with parallel uio host port (no SPI) for Tiny Tapeout"
   language:     "Verilog"
-  clock_hz:     50000000
+  clock_hz:     33333333
 
   tiles: "8x2"
 
