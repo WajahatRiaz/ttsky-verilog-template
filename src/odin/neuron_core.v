@@ -31,6 +31,8 @@ module neuron_core #(
     // Global inputs ------------------------------------------
     input  wire                 RSTN_syncn,
     input  wire                 CLK,
+    inout  wire                 VPWR,
+    inout  wire                 VGND,
     
     // Inputs from SPI configuration registers ----------------
     input  wire                 SPI_GATE_ACTIVITY_sync,
@@ -63,7 +65,6 @@ module neuron_core #(
     
     // Internal regs and wires definitions
 
-    wire           neur_rstn;
     wire [    2:0] syn_weight;
     wire [   31:0] syn_weight_int;
     wire           syn_sign;
@@ -263,6 +264,8 @@ module neuron_core #(
         // Global inputs
         .RSTN       (RSTN_syncn),
         .CK         (CLK),
+        .VPWR       (VPWR),
+        .VGND       (VGND),
     
         // Control and data inputs
         .CS         (CTRL_NEURMEM_CS),
@@ -273,44 +276,10 @@ module neuron_core #(
         // Data output
         .Q          (NEUR_STATE)
     );
-    
 
-endmodule
-
-
-
-
-module SRAM_256x128_wrapper (
-
-    // Global inputs
-    input          RSTN,                     // Reset_N
-    input          CK,                       // Clock (synchronous read/write)
-
-    // Control and data inputs
-    input          CS,                       // Chip select (active high)
-    input          WE,                       // Write enable (active high)
-    input  [  7:0] A,                        // Address bus 
-    input  [127:0] D,                        // Data input bus (write)
-
-    // Data output
-    output [127:0] Q                         // Data output bus (read)   
-);
-
-
-    /*
-     *  Simple behavioral code for simulation, to be replaced by a 256-word 128-bit SRAM macro 
-     *  or Block RAM (BRAM) memory with the same format for FPGA implementations.
-     */      
-        reg [127:0] SRAM[255:0];
-        reg [127:0] Qr;
-        integer s;
-        initial for (s = 0; s < 256; s = s + 1)
-            SRAM[s] = 128'h0;
-        always @(posedge CK) begin
-            Qr <= CS ? SRAM[A] : Qr;
-            if (CS & WE) SRAM[A] <= D;
-        end
-        assign Q = Qr;
-    
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{CTRL_SPI_ADDR[7:0], syn_weight_int[31:4]};
+    /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule

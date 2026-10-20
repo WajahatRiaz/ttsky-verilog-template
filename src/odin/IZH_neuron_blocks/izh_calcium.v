@@ -47,6 +47,11 @@ module izh_calcium (
     wire   spike_out;
 
     assign spike_out   = event_out[6];
+
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |event_out[2:0];
+    /* verilator lint_on UNUSEDSIGNAL */
     assign v_up_next   = param_ca_en && ~state_core_next[3] && (state_core_next[2:0] >= param_thetamem) && (param_ca_theta1 <= state_calcium_next) && (state_calcium_next < param_ca_theta3);
     assign v_down_next = param_ca_en && ~state_core_next[3] && (state_core_next[2:0] <  param_thetamem) && (param_ca_theta1 <= state_calcium_next) && (state_calcium_next < param_ca_theta2);
 

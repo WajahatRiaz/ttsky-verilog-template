@@ -211,5 +211,11 @@ module aer_out #(
         end
 	end
 
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{NEUR_EVENT_OUT[5:0], SCHED_DATA_OUT[12:8], synapse_state_int[31:4]};
+    wire _lint_param_n;
+    assign _lint_param_n = (N == 256);
+    /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule 

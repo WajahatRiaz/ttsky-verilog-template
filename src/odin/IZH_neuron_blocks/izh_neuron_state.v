@@ -242,5 +242,9 @@ module izh_neuron_state (
     assign state_reson_sign_next = (spike_out && param_reson_en) ?                                                                  `RES_NEG : state_reson_sign_next_i;
     assign state_core_next       =  spike_out                    ? ((param_dap_en || param_reson_en) ? {1'b0,param_rfr} : -{1'b0,param_rfr}) : state_core_next_i;
 
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = stim_gt_thr_inh | stim_tmp_gt_thr_inh;
+    /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule 

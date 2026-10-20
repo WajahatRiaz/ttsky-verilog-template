@@ -202,7 +202,7 @@ module scheduler #(
             fifo #(
                 .width(9),
                 .depth(4),
-                .depth_addr(5)
+                .depth_addr(2)
             ) fifo_burst (
                 .clk(CLK),
                 .rst_n(~rst_priority),
@@ -233,6 +233,16 @@ module scheduler #(
     assign SCHED_EMPTY                                                 = empty_main && empty_burst;
     assign SCHED_FULL                                                  = full_main;
 
-
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{
+        empty_burst_dummy,
+        full_burst_dummy,
+        data_out_burst_dummy,
+        full_burst
+    };
+    wire _lint_param_n;
+    assign _lint_param_n = (N == 256);
+    /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule

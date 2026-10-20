@@ -1,0 +1,428 @@
+{
+  "DESIGN_NAME": "tt_um_wajahat_odin",
+  "VERILOG_FILES": [
+    "dir::../src/sram_sky130_adapters.v",
+    "dir::../src/project.v",
+    "dir::../src/odin/ODIN.v",
+    "dir::../src/odin/aer_out.v",
+    "dir::../src/odin/controller.v",
+    "dir::../src/odin/fifo.v",
+    "dir::../src/odin/host_if.v",
+    "dir::../src/odin/izh_neuron.v",
+    "dir::../src/odin/lif_neuron.v",
+    "dir::../src/odin/neuron_core.v",
+    "dir::../src/odin/scheduler.v",
+    "dir::../src/odin/sdsp_update.v",
+    "dir::../src/odin/synaptic_core.v",
+    "dir::../src/odin/IZH_neuron_blocks/izh_calcium.v",
+    "dir::../src/odin/IZH_neuron_blocks/izh_effective_threshold.v",
+    "dir::../src/odin/IZH_neuron_blocks/izh_input_accumulator.v",
+    "dir::../src/odin/IZH_neuron_blocks/izh_neuron_state.v",
+    "dir::../src/odin/IZH_neuron_blocks/izh_stimulation_strength.v",
+    "dir::../src/odin/LIF_neuron_blocks/lif_calcium.v",
+    "dir::../src/odin/LIF_neuron_blocks/lif_neuron_state.v"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20.0,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+  "FALLBACK_SDC": "dir::../src/constraints.sdc",
+  "SYNTH_STRATEGY": "AREA 0",
+  "STA_MACRO_PRIORITIZE_NL": false,
+  "PNR_SDC_FILE": "dir::../src/constraints.sdc",
+  "SIGNOFF_SDC_FILE": "dir::../src/constraints.sdc",
+  "VERILOG_POWER_DEFINE": "USE_POWER_PINS",
+  "FP_SIZING": "absolute",
+  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "PDN_MACRO_CONNECTIONS": [
+    "odin_core.neuron_core_0.neurarray_0.neur_lanes.*.neur_lane VPWR VGND vccd1 vssd1",
+    "odin_core.synaptic_core_0.synarray_0.syn_banks.*.syn_sram VPWR VGND vccd1 vssd1"
+  ],
+  "ERROR_ON_PDN_VIOLATIONS": false,
+  "FP_MACRO_HORIZONTAL_HALO": 10,
+  "FP_MACRO_VERTICAL_HALO": 10,
+  "FP_PDN_VLAYER": "met4",
+  "FP_PDN_HLAYER": "met5",
+  "FP_PDN_VPITCH": 153.6,
+  "FP_PDN_HPITCH": 153.6,
+  "FP_PDN_VWIDTH": 1.6,
+  "FP_PDN_HWIDTH": 1.6,
+  "FP_TAPCELL_DIST": 13,
+  "PL_TARGET_DENSITY": 0.45,
+  "PL_MAX_DISPLACEMENT_X": 1000,
+  "PL_MAX_DISPLACEMENT_Y": 500,
+  "PL_ROUTABILITY_DRIVEN": true,
+  "PL_RESIZER_DESIGN_OPTIMIZATIONS": true,
+  "PL_RESIZER_TIMING_OPTIMIZATIONS": true,
+  "MACROS": {
+    "sky130_sram_1kbyte_1rw1r_8x1024_8": {
+      "instances": {
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[0].neur_lane": {
+          "location": [
+            10.0,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[1].neur_lane": {
+          "location": [
+            525.3,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[2].neur_lane": {
+          "location": [
+            1040.6,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[3].neur_lane": {
+          "location": [
+            1555.8999999999999,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[4].neur_lane": {
+          "location": [
+            10.0,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[5].neur_lane": {
+          "location": [
+            525.3,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[6].neur_lane": {
+          "location": [
+            1040.6,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[7].neur_lane": {
+          "location": [
+            1555.8999999999999,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[8].neur_lane": {
+          "location": [
+            10.0,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[9].neur_lane": {
+          "location": [
+            525.3,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[10].neur_lane": {
+          "location": [
+            1040.6,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[11].neur_lane": {
+          "location": [
+            1555.8999999999999,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[12].neur_lane": {
+          "location": [
+            10.0,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[13].neur_lane": {
+          "location": [
+            525.3,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[14].neur_lane": {
+          "location": [
+            1040.6,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.neuron_core_0.neurarray_0.neur_lanes[15].neur_lane": {
+          "location": [
+            1555.8999999999999,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[0].syn_sram": {
+          "location": [
+            2081.2,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[1].syn_sram": {
+          "location": [
+            2596.5,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[2].syn_sram": {
+          "location": [
+            3111.7999999999997,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[3].syn_sram": {
+          "location": [
+            3627.0999999999995,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[4].syn_sram": {
+          "location": [
+            4142.4,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[5].syn_sram": {
+          "location": [
+            4657.7,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[6].syn_sram": {
+          "location": [
+            5173.0,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[7].syn_sram": {
+          "location": [
+            5688.299999999999,
+            10.0
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[8].syn_sram": {
+          "location": [
+            2081.2,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[9].syn_sram": {
+          "location": [
+            2596.5,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[10].syn_sram": {
+          "location": [
+            3111.7999999999997,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[11].syn_sram": {
+          "location": [
+            3627.0999999999995,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[12].syn_sram": {
+          "location": [
+            4142.4,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[13].syn_sram": {
+          "location": [
+            4657.7,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[14].syn_sram": {
+          "location": [
+            5173.0,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[15].syn_sram": {
+          "location": [
+            5688.299999999999,
+            516.46
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[16].syn_sram": {
+          "location": [
+            2081.2,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[17].syn_sram": {
+          "location": [
+            2596.5,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[18].syn_sram": {
+          "location": [
+            3111.7999999999997,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[19].syn_sram": {
+          "location": [
+            3627.0999999999995,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[20].syn_sram": {
+          "location": [
+            4142.4,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[21].syn_sram": {
+          "location": [
+            4657.7,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[22].syn_sram": {
+          "location": [
+            5173.0,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[23].syn_sram": {
+          "location": [
+            5688.299999999999,
+            1022.92
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[24].syn_sram": {
+          "location": [
+            2081.2,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[25].syn_sram": {
+          "location": [
+            2596.5,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[26].syn_sram": {
+          "location": [
+            3111.7999999999997,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[27].syn_sram": {
+          "location": [
+            3627.0999999999995,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[28].syn_sram": {
+          "location": [
+            4142.4,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[29].syn_sram": {
+          "location": [
+            4657.7,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[30].syn_sram": {
+          "location": [
+            5173.0,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        },
+        "odin_core.synaptic_core_0.synarray_0.syn_banks[31].syn_sram": {
+          "location": [
+            5688.299999999999,
+            1529.3799999999999
+          ],
+          "orientation": "N"
+        }
+      },
+      "lef": [
+        "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8.lef"
+      ],
+      "gds": [
+        "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8.gds"
+      ],
+      "nl": [
+        "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8.v"
+      ],
+      "lib": {
+        "*_tt_025C_1v80": [
+          "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8_TT_1p8V_25C.lib"
+        ]
+      }
+    }
+  },
+  "DIE_AREA": "0 0 6600 2400",
+  "STA_CORNERS": [
+    "nom_tt_025C_1v80"
+  ],
+  "DEFAULT_CORNER": "nom_tt_025C_1v80",
+  "VERILOG_DEFINES": [
+    "USE_POWER_PINS"
+  ],
+  "RUN_CTS": true,
+  "CTS_CLK_BUFFERS": [
+    "sky130_fd_sc_hd__clkbuf_4",
+    "sky130_fd_sc_hd__clkbuf_8"
+  ],
+  "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
+  "CTS_SINK_CLUSTERING_SIZE": 20
+}

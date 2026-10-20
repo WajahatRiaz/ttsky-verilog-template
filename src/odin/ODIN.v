@@ -30,6 +30,8 @@ module ODIN #(
     // Global input     -------------------------------
     input  wire           CLK,
     input  wire           RST,
+    inout  wire           VPWR,
+    inout  wire           VGND,
 
     // Parallel host (replaces SPI on Tiny Tapeout) ----
     input  wire           HOST_STB,
@@ -94,7 +96,6 @@ module ODIN #(
     wire                 CTRL_NEUR_TREF;  
     wire [          4:0] CTRL_NEUR_VIRTS;
     wire                 CTRL_NEUR_BURST_END;
-    wire                 CTRL_NEUR_MAPTABLE;
     wire                 CTRL_SCHED_POP_N;
     wire [        M-1:0] CTRL_SCHED_ADDR;
     wire [          6:0] CTRL_SCHED_EVENT_IN;
@@ -123,7 +124,8 @@ module ODIN #(
     //----------------------------------------------------------------------------------
 	//	Reset (with double sync barrier)
 	//----------------------------------------------------------------------------------
-    
+
+    /* verilator lint_off SYNCASYNCNET */
     always @(posedge CLK) begin
         RST_sync_int <= RST;
 		RST_sync     <= RST_sync_int;
@@ -134,6 +136,7 @@ module ODIN #(
     always @(negedge CLK) begin
         RSTN_syncn <= RSTN_sync;
     end
+    /* verilator lint_on SYNCASYNCNET */
     
     
     //----------------------------------------------------------------------------------
@@ -338,6 +341,8 @@ module ODIN #(
         // Global inputs ------------------------------------------
         .RSTN_syncn(RSTN_syncn),
         .CLK(CLK),
+        .VPWR(VPWR),
+        .VGND(VGND),
 
         // Inputs from SPI configuration registers ----------------
         .SPI_GATE_ACTIVITY_sync(SPI_GATE_ACTIVITY_sync),
@@ -376,6 +381,8 @@ module ODIN #(
         // Global inputs ------------------------------------------
         .RSTN_syncn(RSTN_syncn),
         .CLK(CLK),
+        .VPWR(VPWR),
+        .VGND(VGND),
         
         // Inputs from SPI configuration registers ----------------
         .SPI_GATE_ACTIVITY_sync(SPI_GATE_ACTIVITY_sync),

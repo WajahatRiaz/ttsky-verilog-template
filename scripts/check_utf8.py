@@ -18,6 +18,7 @@ SKIP_SUFFIXES = {
     ".ico",
     ".pdf",
     ".fst",
+    ".gds",
     ".vcd",
     ".zip",
     ".bin",

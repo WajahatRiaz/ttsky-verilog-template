@@ -50,6 +50,11 @@ module izh_effective_threshold (
     assign predicted_acc_thr = param_acc_en ? (state_stim_str_tmp + {1'b0,param_thr}): 4'b0;
     assign spike_out         = event_out[6];
 
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{event_out[2:0], predicted_acc_thr[2:0]};
+    /* verilator lint_on UNUSEDSIGNAL */
+
     always @(*) begin 
         if (param_acc_en)
             if (event_tref)

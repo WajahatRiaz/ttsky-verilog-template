@@ -41,6 +41,10 @@ module izh_input_accumulator #(
     output wire                 ovfl_inh          // negative inhibitory overflow signal
 );
 
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = state_refrac;
+    /* verilator lint_on UNUSEDSIGNAL */
 
     reg  state_inacc_fi, state_inacc_next_fi;
     wire toggle;

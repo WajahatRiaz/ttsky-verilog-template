@@ -523,6 +523,12 @@ module controller #(
         end
     end
 
-    
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |CTRL_SPI_ADDR[15:13];
+    wire _lint_param_n;
+    assign _lint_param_n = (N == 256);
+    /* verilator lint_on UNUSEDSIGNAL */
+
 endmodule
 

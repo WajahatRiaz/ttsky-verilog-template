@@ -31,6 +31,8 @@ module synaptic_core #(
     // Global inputs ------------------------------------------
     input  wire           RSTN_syncn,
     input  wire           CLK,
+    inout  wire           VPWR,
+    inout  wire           VGND,
     
     // Inputs from SPI configuration registers ----------------
     input  wire           SPI_GATE_ACTIVITY_sync,
@@ -114,6 +116,8 @@ module synaptic_core #(
         // Global inputs
         .RSTN       (RSTN_syncn),
         .CK         (CLK),
+        .VPWR       (VPWR),
+        .VGND       (VGND),
 	
 		// Control and data inputs
 		.CS         (CTRL_SYNARRAY_CS),
@@ -127,40 +131,15 @@ module synaptic_core #(
     
     assign {syn_sign_dummy,SYN_SIGN} = SPI_SYN_SIGN >> CTRL_SYNARRAY_ADDR[12:5];
 
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{
+        CTRL_SPI_ADDR[15],
+        CTRL_SPI_ADDR[12:0],
+        NEUR_V_UP_int[255:8],
+        NEUR_V_DOWN_int[255:8],
+        syn_sign_dummy
+    };
+    /* verilator lint_on UNUSEDSIGNAL */
 
-endmodule
-
-
-
-
-module SRAM_8192x32_wrapper (
-
-    // Global inputs
-    input         RSTN,                     // Reset
-    input         CK,                       // Clock (synchronous read/write)
-
-    // Control and data inputs
-    input         CS,                       // Chip select (active low) (init low)
-    input         WE,                       // Write enable (active low)
-    input  [12:0] A,                        // Address bus 
-    input  [31:0] D,                        // Data input bus (write)
-
-    // Data output
-    output [31:0] Q                         // Data output bus (read)   
-);
-
-
-    /*
-     *  Simple behavioral code for simulation, to be replaced by a 8192-word 32-bit SRAM macro 
-     *  or Block RAM (BRAM) memory with the same format for FPGA implementations.
-     */      
-        reg [31:0] SRAM[8191:0];
-        reg [31:0] Qr;
-        always @(posedge CK) begin
-            Qr <= CS ? SRAM[A] : Qr;
-            if (CS & WE) SRAM[A] <= D;
-        end
-        assign Q = Qr;
-
-    
 endmodule

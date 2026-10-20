@@ -14,7 +14,9 @@ module tt_um_wajahat_odin (
     output wire [7:0] uio_oe,
     input  wire       ena,
     input  wire       clk,
-    input  wire       rst_n
+    input  wire       rst_n,
+    inout  wire       VPWR,
+    inout  wire       VGND
 );
 
   wire mode_host = uio_in[7];
@@ -57,6 +59,8 @@ module tt_um_wajahat_odin (
   ODIN odin_core (
       .CLK          (clk),
       .RST          (~rst_n),
+      .VPWR         (VPWR),
+      .VGND         (VGND),
       .HOST_STB     (host_stb),
       .HOST_WE      (host_we),
       .HOST_CONF    (host_conf),

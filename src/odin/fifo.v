@@ -48,9 +48,11 @@ module fifo #(
 
 
 
+    localparam integer MEM_ADDR_WIDTH = (depth <= 1) ? 1 : $clog2(depth);
+
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
-            write_ptr <= 2'b0;
+            write_ptr <= {depth_addr{1'b0}};
         else if (!push_req_n)
             write_ptr <= write_ptr + {{(depth_addr-1){1'b0}},1'b1};
         else
@@ -59,7 +61,7 @@ module fifo #(
 
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
-            read_ptr <= 2'b0;
+            read_ptr <= {depth_addr{1'b0}};
         else if (!pop_req_n)
             read_ptr <= read_ptr + {{(depth_addr-1){1'b0}},1'b1};
         else
@@ -68,7 +70,7 @@ module fifo #(
 
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
-            fill_cnt <= 2'b0;
+            fill_cnt <= {depth_addr{1'b0}};
         else if (!push_req_n && pop_req_n && !empty)
             fill_cnt <= fill_cnt + {{(depth_addr-1){1'b0}},1'b1};
         else if (!push_req_n && !pop_req_n)
@@ -106,7 +108,7 @@ module fifo #(
         
     endgenerate
 
-    assign data_out = mem[read_ptr];
+    assign data_out = mem[read_ptr[MEM_ADDR_WIDTH-1:0]];
 
 
 endmodule 

@@ -65,7 +65,6 @@ module host_if #(
             timeref_cnt           <= 3'd0;
             SPI_GATE_ACTIVITY     <= 1'b1;
             SPI_OPEN_LOOP         <= 1'b0;
-            SPI_SYN_SIGN          <= {N{1'b0}};
             SPI_BURST_TIMEREF     <= 20'h0;
             SPI_OUT_AER_MONITOR_EN <= 1'b0;
             SPI_AER_SRC_CTRL_nNEUR <= 1'b0;
@@ -137,9 +136,14 @@ module host_if #(
                 if (RST_async)
                     SPI_SYN_SIGN[16*i+15:16*i] <= 16'h0;
                 else if (host_stb && host_conf && !host_addr_hi && conf_reg == (8'd2 + i[7:0]))
-                    SPI_SYN_SIGN[16*i+15:16*i] <= host_wdata;
+                    SPI_SYN_SIGN[16*i+15:16*i] <= {8'b0, host_wdata};
             end
         end
     endgenerate
+
+    /* verilator lint_off UNUSEDSIGNAL */
+    wire _lint_sink;
+    assign _lint_sink = |{readback_weight[31:8], readback_neuron[127:8]};
+    /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule
