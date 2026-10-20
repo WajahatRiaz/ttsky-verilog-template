@@ -85,4 +85,9 @@ jobs:
             librelane/runs/ci/warning.log
             librelane/runs/ci/resolved.json
             librelane/runs/ci/*/reports
+            librelane/runs/ci/*-magic-streamout
+            librelane/runs/ci/*-klayout-streamout
+            librelane/runs/ci/*-reportmanufacturability
+            librelane/runs/ci/*-magic-drc
+            librelane/runs/ci/*-netgen-lvs
             librelane/runs/ci/*/*.log
