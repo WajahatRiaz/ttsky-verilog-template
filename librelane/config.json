@@ -407,7 +407,10 @@
         "*_tt_025C_1v80": [
           "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8_TT_1p8V_25C.lib"
         ]
-      }
+      },
+      "spice": [
+        "dir::macros/sky130_sram_1kbyte_1rw1r_8x1024_8.spice"
+      ]
     }
   },
   "DIE_AREA": "0 0 6600 2400",
@@ -424,9 +427,5 @@
     "sky130_fd_sc_hd__clkbuf_8"
   ],
   "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
-  "CTS_SINK_CLUSTERING_SIZE": 20,
-  "RUN_MAGIC_DRC": false,
-  "RUN_KLAYOUT_DRC": false,
-  "RUN_KLAYOUT_XOR": false,
-  "RUN_LVS": false
+  "CTS_SINK_CLUSTERING_SIZE": 20
 }

@@ -19,6 +19,7 @@ SKIP_SUFFIXES = {
     ".pdf",
     ".fst",
     ".gds",
+    ".spice",
     ".vcd",
     ".zip",
     ".bin",
