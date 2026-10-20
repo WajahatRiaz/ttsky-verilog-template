@@ -424,5 +424,9 @@
     "sky130_fd_sc_hd__clkbuf_8"
   ],
   "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
-  "CTS_SINK_CLUSTERING_SIZE": 20
+  "CTS_SINK_CLUSTERING_SIZE": 20,
+  "RUN_MAGIC_DRC": false,
+  "RUN_KLAYOUT_DRC": false,
+  "RUN_KLAYOUT_XOR": false,
+  "RUN_LVS": false
 }

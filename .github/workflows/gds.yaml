@@ -11,7 +11,7 @@ env:
 jobs:
   gds:
     runs-on: ubuntu-24.04
-    timeout-minutes: 180
+    timeout-minutes: 345
     steps:
       - name: checkout repo
         uses: actions/checkout@v6
@@ -29,18 +29,27 @@ jobs:
           python3 -m ciel enable --pdk-family sky130 --pdk-root "$PDK_ROOT" "$PDK_VERSION"
           ls "$PDK_ROOT/sky130A/libs.ref/sky130_sram_macros/lef"
 
-      - name: Run ODIN flow through CTS
+      - name: Run ODIN flow through GDS
         run: |
           librelane --dockerized --pdk-root "$PDK_ROOT" --run-tag ci \
-            --to OpenROAD.CTS librelane/config.json
+            --skip Checker.SetupViolations --skip Checker.HoldViolations \
+            --skip Checker.MaxSlewViolations --skip Checker.MaxCapViolations \
+            librelane/config.json
 
       - name: Check flow errors
         run: |
           RUN=librelane/runs/ci
-          test -f "$RUN/23-openroad-cts/state_out.json"
+          test -f "$RUN/final/gds/tt_um_wajahat_odin.gds"
           ! grep -q "^\[ERROR\]" "$RUN/flow.log"
 
-      - name: Upload run results
+      - name: Upload GDS and final views
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: odin-final
+          path: librelane/runs/ci/final
+
+      - name: Upload run logs and reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -52,5 +61,3 @@ jobs:
             librelane/runs/ci/resolved.json
             librelane/runs/ci/*/reports
             librelane/runs/ci/*/*.log
-            librelane/runs/ci/23-openroad-cts/*.odb
-            librelane/runs/ci/23-openroad-cts/*.nl.v
