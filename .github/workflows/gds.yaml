@@ -40,6 +40,33 @@ jobs:
           test -f "$RUN/final/gds/tt_um_wajahat_odin.gds"
           ! grep -q "^\[ERROR\]" "$RUN/flow.log"
 
+      - name: Verify DRC, LVS and timing results
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          m = json.load(open("librelane/runs/ci/final/metrics.json"))
+          keys = [
+              "magic__drc_error__count",
+              "klayout__drc_error__count",
+              "route__drc_errors",
+              "design__lvs_error__count",
+              "design__xor_difference__count",
+              "timing__setup_vio__count",
+              "timing__hold_vio__count",
+              "design__max_slew_violation__count",
+              "design__max_cap_violation__count",
+              "antenna__violating__nets",
+          ]
+          bad = False
+          for k in keys:
+              vals = {n: v for n, v in m.items() if n == k or n.startswith(k + "__corner:")}
+              for n, v in sorted(vals.items()):
+                  print(f"{n}: {v}")
+                  if isinstance(v, (int, float)) and v > 0:
+                      bad = True
+          sys.exit(1 if bad else 0)
+          PY
+
       - name: Upload GDS and final views
         if: always()
         uses: actions/upload-artifact@v4
