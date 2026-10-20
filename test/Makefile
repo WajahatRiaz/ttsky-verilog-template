@@ -15,6 +15,7 @@ TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
 PROJECT_SOURCES = \
 	project.v \
+	sram_sky130_adapters.v \
 	odin/ODIN.v \
 	odin/aer_out.v \
 	odin/controller.v \
