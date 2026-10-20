@@ -15,6 +15,7 @@ TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
 PROJECT_SOURCES = \
 	project.v \
+	sram_sky130_adapters.v \
 	odin/ODIN.v \
 	odin/aer_out.v \
 	odin/controller.v \
@@ -37,6 +38,7 @@ PROJECT_SOURCES = \
 ifneq ($(GATES),yes)
 SIM_BUILD = sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
+VERILOG_SOURCES += $(PWD)/../librelane/macros/sky130_sram_1kbyte_1rw1r_8x1024_8.v
 else
 SIM_BUILD = sim_build/gl
 COMPILE_ARGS += -DGL_TEST -DFUNCTIONAL -DUSE_POWER_PINS -DSIM -DUNIT_DELAY=\#1
@@ -45,7 +47,7 @@ VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_f
 VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 endif
 
-COMPILE_ARGS += -I$(SRC_DIR) -g2005-sv
+COMPILE_ARGS += -I$(SRC_DIR) -g2005-sv -DUSE_POWER_PINS
 VERILOG_SOURCES += $(PWD)/tb.v
 TOPLEVEL = tb
 COCOTB_TEST_MODULES = test
